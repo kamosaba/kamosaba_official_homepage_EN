@@ -1,37 +1,37 @@
-# Cloudflare Pages へのデプロイガイド
+# Deployment Guide for Cloudflare Pages
 
-かも鯖公式サイトを Cloudflare Pages にデプロイする手順は以下の通りです。
+Follow these steps to deploy the Kamosaba official website to Cloudflare Pages.
 
-### 1. リポジトリの準備
-GitHub などの Git ホスティングサービスに現在のコードをアップロード（Push）してください。
+### 1. Repository Preparation
+Upload (Push) your current code to a Git hosting service such as GitHub.
 
-### 2. Cloudflare Pages でプロジェクト作成
-1. Cloudflare ダッシュボードにログインし、「Workers & Pages」を選択します。
-2. 「Create application」→「Pages」→「Connect to Git」をクリックします。
-3. リポジトリを選択します。
+### 2. Create Project on Cloudflare Pages
+1. Log in to the Cloudflare dashboard and select "Workers & Pages."
+2. Click "Create application" → "Pages" → "Connect to Git."
+3. Select your repository.
 
-### 3. ビルド設定
-以下の設定を入力して、「Save and Deploy」をクリックします。
+### 3. Build Settings
+Enter the following settings and click "Save and Deploy."
 
-- **Framework preset**: `Next.js` (または `None`)
+- **Framework preset**: `Next.js` (or `None`)
 - **Build command**: `npm run build`
 - **Build output directory**: `out`
 
-### 4. ローカルでの動作確認
-ビルドされた静的HTMLが正しく動作するか、以下のコマンドで手元で確認できます。
+### 4. Local Verification
+You can verify if the built static HTML works correctly by running the following commands locally:
 
-1. `npm run build` を実行
-2. `npm run preview` を実行
-3. ブラウザで表示されたURL（通常 http://localhost:3000 など）にアクセス
+1. Run `npm run build`
+2. Run `npm run preview`
+3. Access the URL displayed in your browser (usually http://localhost:3000, etc.)
 
-これにより、Cloudflare Pages にアップロードされるものと全く同じ「静的HTML」の状態を確認できます。
+This allows you to check the exact "static HTML" state that will be uploaded to Cloudflare Pages.
 
 ---
 
-### 注意事項
-- このプロジェクトは **Static Export (SSG)** モードで動作するように設定されています。
-- `next.config.ts` で `output: 'export'` が設定されているため、ビルド時にすべてのページが静的なHTMLとして生成されます。
-- 画像は `public` フォルダから配信され、画像最適化機能はオフ（unoptimized）に設定されています（静的デプロイメントの制約のため）。
+### Important Notes
+- This project is configured to operate in **Static Export (SSG)** mode.
+- Since `output: 'export'` is set in `next.config.ts`, all pages are generated as static HTML during build.
+- Images are served from the `public` folder, and the image optimization feature is set to off (`unoptimized`) due to static deployment constraints.
 
-### 更新の反映
-GitHub にコードを Push すれば、Cloudflare Pages が自動的にビルドとデプロイを行います。ニュース記事（`.md` ファイル）を追加した場合も同様です。
+### Reflecting Updates
+Whenever you push code to GitHub, Cloudflare Pages will automatically build and deploy it. This also applies when adding news articles (`.md` files).
